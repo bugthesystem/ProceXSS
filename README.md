@@ -1,4 +1,4 @@
-ProceXSS
+ProceXss
 ========
 
-ProceXSS is an Asp.NET Http module for preventing XSS attacks.
+ProceXss is an Asp.NET Http module for preventing XSS attacks.
