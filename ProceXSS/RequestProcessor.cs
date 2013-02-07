@@ -99,7 +99,7 @@ namespace ProceXSS
             StringBuilder message = new StringBuilder();
             message.AppendFormat("Detected potential xss attack. Time: {0}, IP:{1}, Xss detected request part: {2}",
                 DateTime.Now.ToString(CultureInfo.InvariantCulture), request.GetIPInformation(),
-                validationResult.InfectedRequestPart);
+                validationResult.MaliciousRequestPart);
 
             return message.ToString();
         }

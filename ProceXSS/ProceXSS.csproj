@@ -83,7 +83,7 @@
     <Compile Include="Configuration\ProceXssConfigurationHandler.cs" />
     <Compile Include="Enums\ModuleBehaviorMode.cs" />
     <Compile Include="Enums\EncoderType.cs" />
-    <Compile Include="Enums\InfectedRequestPart.cs" />
+    <Compile Include="Enums\MaliciousRequestPart.cs" />
     <Compile Include="Extensions\HttpRequestExtensions.cs" />
     <Compile Include="Interface\IRequestCleaner.cs" />
     <Compile Include="Interface\IRequestProcessor.cs" />

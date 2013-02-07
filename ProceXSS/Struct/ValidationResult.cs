@@ -4,7 +4,7 @@ namespace ProceXSS.Struct
 {
     public struct ValidationResult
     {
-        public InfectedRequestPart InfectedRequestPart;
+        public MaliciousRequestPart MaliciousRequestPart;
         public bool IsValid;
     }
 }

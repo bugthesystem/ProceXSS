@@ -1,6 +1,6 @@
 namespace ProceXSS.Enums
 {
-    public enum InfectedRequestPart
+    public enum MaliciousRequestPart
     {
         None,
         Cookie,

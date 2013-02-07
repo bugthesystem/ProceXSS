@@ -36,7 +36,7 @@ namespace ProceXSS.Extensions
             ValidationResult result = new ValidationResult
                                              {
                                                  IsValid = true,
-                                                 InfectedRequestPart = InfectedRequestPart.None
+                                                 MaliciousRequestPart = MaliciousRequestPart.None
                                              };
 
             if (request != null)
@@ -47,7 +47,7 @@ namespace ProceXSS.Extensions
                     RegexExecutor.IsXSSAttcak(POTENTIAL_XSS_ATTACK_REGEX, queryString))
                 {
                     result.IsValid = false;
-                    result.InfectedRequestPart = InfectedRequestPart.QueryString;
+                    result.MaliciousRequestPart = MaliciousRequestPart.QueryString;
                 }
 
                 if (request.HttpMethod.Equals("POST", StringComparison.InvariantCultureIgnoreCase))
@@ -76,7 +76,7 @@ namespace ProceXSS.Extensions
                         RegexExecutor.IsXSSAttcak(POTENTIAL_XSS_ATTACK_REGEX, formPostValues))
                     {
                         result.IsValid = false;
-                        result.InfectedRequestPart = InfectedRequestPart.Form;
+                        result.MaliciousRequestPart = MaliciousRequestPart.Form;
                     }
                 }
             }
