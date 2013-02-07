@@ -2,9 +2,9 @@ using ProceXSS.Enums;
 
 namespace ProceXSS.Struct
 {
-    internal struct ValidationResult
+    public struct ValidationResult
     {
-        public DirtyRequestPart DirtyRequestPart;
+        public InfectedRequestPart InfectedRequestPart;
         public bool IsValid;
     }
 }

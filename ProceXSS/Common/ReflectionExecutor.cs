@@ -1,8 +1,8 @@
 using System.Reflection;
 
-namespace ProceXSS.Helper
+namespace ProceXSS.Common
 {
-    internal static class ReflectionHelper
+    public static class ReflectionExecutor
     {
         public static PropertyInfo MakeWritable<T>(T type) where T : class
         {

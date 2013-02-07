@@ -1,11 +1,16 @@
 using System.Text.RegularExpressions;
 
-namespace ProceXSS.Helper
+namespace ProceXSS.Common
 {
-    internal static class RegexHelper
+    public static class RegexExecutor
     {
         public const string POTENTIAL_XSS_ATTACK_EXPRESSION_V3 = "(javascript[^*(%3a)]*(%3a|:))|(%3C*|<)[^*]?script|(document*(%2e|.))|(setInterval[^*(%28)]*(%28|\\())|(setTimeout[^*(%28)]*(%28|\\())|(alert[^*(%28)]*(%28|\\())|(((\\%3C) <)[^\n]+((\\%3E) >))";
 
+        public static bool IsNumber(string inputvalue)
+        {
+            Regex isnumber = new Regex("[^0-9]");
+            return !isnumber.IsMatch(inputvalue);
+        }
 
         public static bool IsXSSAttcak(Regex regex, string inputValue)
         {

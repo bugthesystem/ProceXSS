@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>ProceXSS</id>
+    <version>0.1.0</version>
+    <authors>ziyasal</authors>
+    <description>Xss Security Module</description>
+    <dependencies>
+      <dependency id="NLog" />
+      <dependency id="AntiXSS" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\ProceXSS.dll" target="lib\net45" ></file>
+  </files>
+</package>

@@ -2,22 +2,22 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
+using Microsoft.Security.Application;
+using ProceXSS.Common;
 using ProceXSS.Configuration;
 using ProceXSS.Enums;
-using ProceXSS.Helper;
 using ProceXSS.Interface;
-using Encoder = Microsoft.Security.Application.Encoder;
 
 namespace ProceXSS
 {
-    internal sealed class RequestCleaner : IRequestCleaner
+    public sealed class RequestCleaner : IRequestCleaner
     {
         private Regex _potentialXssAttackRegex;
         public void Clean(NameValueCollection collection, ProceXssConfigurationHandler configurationHandler, EncoderType encoderType = EncoderType.AutoDetect)
         {
             if (string.IsNullOrWhiteSpace(configurationHandler.ControlRegex))
             {
-                _potentialXssAttackRegex = new Regex(RegexHelper.POTENTIAL_XSS_ATTACK_EXPRESSION_V3, RegexOptions.IgnoreCase);
+                _potentialXssAttackRegex = new Regex(RegexExecutor.POTENTIAL_XSS_ATTACK_EXPRESSION_V3, RegexOptions.IgnoreCase);
             }
             else
             {
@@ -28,12 +28,12 @@ namespace ProceXSS
                 }
                 catch
                 {
-                    _potentialXssAttackRegex = new Regex(RegexHelper.POTENTIAL_XSS_ATTACK_EXPRESSION_V3,
+                    _potentialXssAttackRegex = new Regex(RegexExecutor.POTENTIAL_XSS_ATTACK_EXPRESSION_V3,
                                                         RegexOptions.IgnoreCase);
                 }
             }
 
-            PropertyInfo readonlyProperty = ReflectionHelper.MakeWritable(collection);
+            PropertyInfo readonlyProperty = ReflectionExecutor.MakeWritable(collection);
 
             for (int i = 0; i < collection.Count; i++)
             {
@@ -59,10 +59,9 @@ namespace ProceXSS
                     }
                 case EncoderType.HtmlFragment:
                     {
-                        //collection[collection.Keys[index]] = RegexHelper.IsNumber(collection[index])
-                        //                                     ? collection[index]
-                        //                                     : Sanitizer.GetSafeHtmlFragment(collection[index]);
-                        collection[collection.Keys[index]] = Encoder.HtmlEncode(collection[index]);
+                        collection[collection.Keys[index]] = RegexExecutor.IsNumber(collection[index])
+                                                             ? collection[index]
+                                                             : Sanitizer.GetSafeHtmlFragment(collection[index]);
                         break;
                     }
                 case EncoderType.Html:
@@ -77,7 +76,7 @@ namespace ProceXSS
                     break;
                 case EncoderType.AutoDetect:
                     {
-                        if (RegexHelper.IsXSSAttcak(_potentialXssAttackRegex, collection[index]))
+                        if (RegexExecutor.IsXSSAttcak(_potentialXssAttackRegex, collection[index]))
                         {
                             collection[collection.Keys[index]] = Encoder.JavaScriptEncode(collection[index]);
                         }

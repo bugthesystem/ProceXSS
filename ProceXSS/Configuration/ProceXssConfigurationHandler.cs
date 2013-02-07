@@ -31,7 +31,7 @@ namespace ProceXSS.Configuration
 
                 if (this["controlRegex"] != null)
                 {
-                    result= this["controlRegex"] as string;
+                    result = this["controlRegex"] as string;
                 }
 
                 return result;
@@ -65,67 +65,17 @@ namespace ProceXSS.Configuration
         }
 
         [ConfigurationProperty("excludeUrls")]
-        public ExcludedUrlFilterCollection ExcludeUrls
+        public UrlExcludeFilterCollection Exclude
         {
             get
             {
-                return this["excludeUrls"] as ExcludedUrlFilterCollection;
+                return this["excludeUrls"] as UrlExcludeFilterCollection;
             }
         }
 
         public static ProceXssConfigurationHandler GetConfig()
         {
             return ConfigurationManager.GetSection("antiXssModuleSettings") as ProceXssConfigurationHandler;
-        }
-    }
-
-    public class ExcludedUrFilter : ConfigurationElement
-    {
-        [ConfigurationProperty("name", IsRequired = true)]
-        public string Name
-        {
-            get
-            {
-                return this["name"] as string;
-            }
-        }
-
-        [ConfigurationProperty("value", IsRequired = true)]
-        public string Value
-        {
-            get
-            {
-                return this["value"] as string;
-            }
-        }
-    }
-
-    public class ExcludedUrlFilterCollection : ConfigurationElementCollection
-    {
-        public ExcludedUrFilter this[int index]
-        {
-            get
-            {
-                return BaseGet(index) as ExcludedUrFilter;
-            }
-            set
-            {
-                if (BaseGet(index) != null)
-                {
-                    BaseRemoveAt(index);
-                }
-                BaseAdd(index, value);
-            }
-        }
-
-        protected override ConfigurationElement CreateNewElement()
-        {
-            return new ExcludedUrFilter();
-        }
-
-        protected override object GetElementKey(ConfigurationElement element)
-        {
-            return ((ExcludedUrFilter)element).Name;
         }
     }
 }

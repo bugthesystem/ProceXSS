@@ -3,16 +3,15 @@ using System.Web;
 using ProceXSS.Configuration;
 using ProceXSS.Interface;
 
-
 namespace ProceXSS
 {
     public class AntiXSSModule : IHttpModule
     {
-        #region IHttpModule Members
+        private static readonly ProceXssConfigurationHandler ModuleConfigurationHandler = ProceXssConfigurationHandler.GetConfig();
 
         public void Dispose()
         {
-
+            //clean-up code here.
         }
 
         public void Init(HttpApplication context)
@@ -22,30 +21,23 @@ namespace ProceXSS
 
         private void InitEvents(HttpApplication context)
         {
-            if (ConfigurationHandler.IsActive.Equals(bool.TrueString))
+            if (ModuleConfigurationHandler.IsActive.Equals(bool.TrueString))
             {
                 context.BeginRequest += BeginRequest;
             }
         }
 
-        #endregion
-
-        private static readonly ProceXssConfigurationHandler ConfigurationHandler = ProceXssConfigurationHandler.GetConfig();
-
-
-        #region Event Impl
-
         private void BeginRequest(object sender, EventArgs e)
         {
-            IRequestProcessor requestProcessor = new RequestProcessor(sender as HttpApplication, ConfigurationHandler);
-            requestProcessor.ProcessRequest();
+            RegisterBeginRequestEventHandler(sender);
         }
 
+        private void RegisterBeginRequestEventHandler(object sender)
+        {
+            IUrlChecker urlChecker=new UrlChecker(ModuleConfigurationHandler);
+            IRequestProcessor requestProcessor = new RequestProcessor(sender as HttpApplication, ModuleConfigurationHandler,urlChecker);
 
-        #endregion Event Impl
-
-        #region Private Register Calls
-
-        #endregion Private Register Calls
+            requestProcessor.ProcessRequest();
+        }
     }
 }

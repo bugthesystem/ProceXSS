@@ -1,6 +1,6 @@
 namespace ProceXSS.Enums
 {
-    internal enum EncoderType
+    public enum EncoderType
     {
         Javascript,
         HtmlFragment,

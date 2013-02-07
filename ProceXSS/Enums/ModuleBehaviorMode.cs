@@ -1,6 +1,6 @@
 ﻿namespace ProceXSS.Enums
 {
-    internal enum ModuleBehaviorMode
+    public enum ModuleBehaviorMode
     {
         Redirect,
         Ignore

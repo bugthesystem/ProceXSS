@@ -49,20 +49,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AntiXssLibrary, Version=4.2.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="AntiXssLibrary">
       <HintPath>..\packages\AntiXSS.4.2.1\lib\net40\AntiXssLibrary.dll</HintPath>
     </Reference>
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.2.1\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -76,20 +76,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiXSSModule.cs" />
+    <Compile Include="Common\ReflectionExecutor.cs" />
+    <Compile Include="Common\RegexExecutor.cs" />
+    <Compile Include="Configuration\UrlExcludeFilter.cs" />
+    <Compile Include="Configuration\UrlExcludeFilterCollection.cs" />
+    <Compile Include="Configuration\ProceXssConfigurationHandler.cs" />
     <Compile Include="Enums\ModuleBehaviorMode.cs" />
     <Compile Include="Enums\EncoderType.cs" />
-    <Compile Include="Enums\DirtyRequestPart.cs" />
-    <Compile Include="Helper\ReflectionHelper.cs" />
-    <Compile Include="Helper\RegexHelper.cs" />
+    <Compile Include="Enums\InfectedRequestPart.cs" />
+    <Compile Include="Extensions\HttpRequestExtensions.cs" />
     <Compile Include="Interface\IRequestCleaner.cs" />
     <Compile Include="Interface\IRequestProcessor.cs" />
-    <Compile Include="Configuration\ProceXssConfigurationHandler.cs" />
-    <Compile Include="Log\XSSLogManager.cs" />
+    <Compile Include="Interface\IUrlChecker.cs" />
+    <Compile Include="Log\LibraryLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestCleaner.cs" />
     <Compile Include="RequestProcessor.cs" />
     <Compile Include="Struct\ValidationResult.cs" />
-    <Compile Include="XssSecurityHttpRequestExtensions.cs" />
+    <Compile Include="UrlChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -115,11 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="ProceXSS.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.MonthStamp.Increment.TimeStamp" BuildVersion_StartDate="2012/5/20" />
+      <UserProperties BuildVersion_StartDate="2012/5/20" BuildVersion_BuildVersioningStyle="None.MonthStamp.Increment.TimeStamp" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

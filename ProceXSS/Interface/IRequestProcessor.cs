@@ -1,6 +1,6 @@
 namespace ProceXSS.Interface
 {
-    internal interface IRequestProcessor
+    public interface IRequestProcessor
     {
         void ProcessRequest();
     }
