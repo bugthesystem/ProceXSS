@@ -90,7 +90,7 @@ namespace ProceXSS
 
         private void LogRequestXssWarning(HttpRequest request, ValidationResult validationResult)
         {
-            LibraryLogger.Instance.Warn(BuildLogMessage(request, validationResult), request);
+            XssLogger.Instance.Warn(BuildLogMessage(request, validationResult), request);
         }
 
         private string BuildLogMessage(HttpRequest request, ValidationResult validationResult)

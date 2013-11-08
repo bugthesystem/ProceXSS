@@ -65,7 +65,7 @@ namespace ProceXSS.Extensions
                             string message = string.Format(@"Request.Form getter called, Method :{0},
                                                             Request Page: {1}", MethodBase.GetCurrentMethod().Name,
                                                            request.Url);
-                            LibraryLogger.Instance.ErrorException(message, ex);
+                            XssLogger.Instance.ErrorException(message, ex);
                         }
 
                         throw;

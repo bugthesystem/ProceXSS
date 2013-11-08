@@ -2,11 +2,11 @@
 
 namespace ProceXSS.Log
 {
-    internal static class LibraryLogger
+    internal static class XssLogger
     {
         private static readonly Logger Logger;
 
-        static LibraryLogger()
+        static XssLogger()
         {
             LogManager.ThrowExceptions = true;
             Logger = LogManager.GetCurrentClassLogger();
