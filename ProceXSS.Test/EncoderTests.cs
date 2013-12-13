@@ -6,7 +6,7 @@ namespace ProceXSS.Test
     public class EncoderTests
     {
         [Test]
-        public void InfectedRequestDetectionPositiveTest()
+        public void Test1()
         {
 
         }
