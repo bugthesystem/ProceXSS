@@ -1,17 +1,18 @@
 using System;
 using System.Web;
+using ProceXSS.Common;
 using ProceXSS.Configuration;
+using ProceXSS.Infrastructure;
 using ProceXSS.Interface;
 
 namespace ProceXSS
 {
     public class ProceXSSModule : IHttpModule
     {
-        private static readonly ProceXssConfigurationHandler ModuleConfigurationHandler = ProceXssConfigurationHandler.GetConfig();
+        private static readonly IXssConfigurationHandler Configuration = XssConfigurationHandler.GetConfig();
 
         public void Dispose()
         {
-            //clean-up code here.
         }
 
         public void Init(HttpApplication context)
@@ -21,7 +22,7 @@ namespace ProceXSS
 
         private void InitEvents(HttpApplication context)
         {
-            if (ModuleConfigurationHandler.IsActive.Equals(bool.TrueString))
+            if (Configuration.IsActive.Equals(bool.TrueString))
             {
                 context.BeginRequest += BeginRequest;
             }
@@ -29,13 +30,18 @@ namespace ProceXSS
 
         private void BeginRequest(object sender, EventArgs e)
         {
-            RegisterBeginRequestEventHandler(sender);
+            StartXssDetection(sender as HttpApplication);
         }
 
-        private void RegisterBeginRequestEventHandler(object sender)
+        private void StartXssDetection(HttpApplication httpApplication)
         {
-            IUrlChecker urlChecker=new UrlChecker(ModuleConfigurationHandler);
-            IRequestProcessor requestProcessor = new RequestProcessor(sender as HttpApplication, ModuleConfigurationHandler,urlChecker);
+            IUrlChecker urlChecker = new UrlChecker(Configuration);
+            IRegexProcessor regexProcessor = new RegexProcessor();
+            IRequestCleaner requestCleaner = new RequestCleaner(new Reflector(), regexProcessor);
+            IXssDetector xssDetector = new XssDetector(Configuration, regexProcessor);
+            IIpAdressHelper ipAdressHelper = new IpAdressHelper();
+
+            IRequestProcessor requestProcessor = new RequestProcessor(httpApplication, Configuration, urlChecker, requestCleaner, xssDetector, ipAdressHelper);
 
             requestProcessor.ProcessRequest();
         }

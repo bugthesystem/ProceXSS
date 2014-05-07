@@ -6,6 +6,6 @@ namespace ProceXSS.Interface
 {
     public interface IRequestCleaner
     {
-        void Clean(NameValueCollection collection, ProceXssConfigurationHandler configurationHandler, EncoderType encoderType = EncoderType.AutoDetect);
+        void Clean(NameValueCollection collection, IXssConfigurationHandler configurationHandler, EncoderType encoderType = EncoderType.AutoDetect);
     }
 }

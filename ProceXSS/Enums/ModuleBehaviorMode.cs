@@ -1,4 +1,4 @@
-﻿namespace ProceXSS.Enums
+namespace ProceXSS.Enums
 {
     public enum ModuleBehaviorMode
     {
