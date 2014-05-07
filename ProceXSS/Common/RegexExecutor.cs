@@ -12,7 +12,7 @@ namespace ProceXSS.Common
             return !isnumber.IsMatch(inputvalue);
         }
 
-        public static bool IsXSSAttcak(Regex regex, string inputValue)
+        public static bool IsXssAttack(Regex regex, string inputValue)
         {
             return regex.IsMatch(inputValue);
         }

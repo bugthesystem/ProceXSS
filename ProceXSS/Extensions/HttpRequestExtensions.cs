@@ -44,7 +44,7 @@ namespace ProceXSS.Extensions
                 string queryString = request.QueryString.ToString();
 
                 if (!string.IsNullOrEmpty(queryString) &&
-                    RegexExecutor.IsXSSAttcak(POTENTIAL_XSS_ATTACK_REGEX, queryString))
+                    RegexExecutor.IsXssAttack(POTENTIAL_XSS_ATTACK_REGEX, queryString))
                 {
                     result.IsValid = false;
                     result.MaliciousRequestPart = MaliciousRequestPart.QueryString;
@@ -73,7 +73,7 @@ namespace ProceXSS.Extensions
 
 
                     if (!string.IsNullOrEmpty(formPostValues) &&
-                        RegexExecutor.IsXSSAttcak(POTENTIAL_XSS_ATTACK_REGEX, formPostValues))
+                        RegexExecutor.IsXssAttack(POTENTIAL_XSS_ATTACK_REGEX, formPostValues))
                     {
                         result.IsValid = false;
                         result.MaliciousRequestPart = MaliciousRequestPart.Form;

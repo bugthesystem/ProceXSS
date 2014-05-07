@@ -76,7 +76,7 @@ namespace ProceXSS
                     break;
                 case EncoderType.AutoDetect:
                     {
-                        if (RegexExecutor.IsXSSAttcak(_potentialXssAttackRegex, collection[index]))
+                        if (RegexExecutor.IsXssAttack(_potentialXssAttackRegex, collection[index]))
                         {
                             collection[collection.Keys[index]] = Encoder.JavaScriptEncode(collection[index]);
                         }
