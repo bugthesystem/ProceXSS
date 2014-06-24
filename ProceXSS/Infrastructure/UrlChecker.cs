@@ -14,7 +14,7 @@ namespace ProceXSS.Infrastructure
 
         public bool ExistInExcludeList(string rawUrl)
         {
-            //Uri uri = new Uri(rawUrl); /*TODO: Use uri*/
+            //TODO: Use uri to verify well-formed url--> Uri uri = new Uri(rawUrl); 
 
             string url = rawUrl.Split('?')[0];
 
@@ -22,13 +22,13 @@ namespace ProceXSS.Infrastructure
 
             for (int i = 0; i < _moduleConfigurationHandler.ExcludeList.Count; i++)
             {
-
                 if (_moduleConfigurationHandler.ExcludeList[i].Value != url)
                 {
                     continue;
                 }
 
                 result = true;
+
                 break;
             }
 

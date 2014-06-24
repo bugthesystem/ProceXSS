@@ -2,7 +2,7 @@ using ProceXSS.Enums;
 
 namespace ProceXSS.Struct
 {
-    public struct XSSValidationResult
+    public struct RequestValidationResult
     {
         public DiseasedRequestPart DiseasedRequestPart;
         public bool IsValid;

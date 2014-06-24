@@ -16,6 +16,7 @@ namespace ProceXSS.Configuration
                 {
                     BaseRemoveAt(index);
                 }
+
                 BaseAdd(index, value);
             }
         }

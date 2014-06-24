@@ -1,7 +1,7 @@
 using System.Reflection;
 using ProceXSS.Interface;
 
-namespace ProceXSS.Common
+namespace ProceXSS.Infrastructure
 {
     public class Reflector : IReflector
     {

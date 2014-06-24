@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
 using ProceXSS.Interface;
 
-namespace ProceXSS.Common
+namespace ProceXSS.Infrastructure
 {
     public class RegexProcessor : IRegexProcessor
     {
@@ -20,6 +20,7 @@ namespace ProceXSS.Common
         {
             get
             {
+                //Simple xss detection pattern
                 return "(javascript[^*(%3a)]*(%3a|:))|(%3C*|<)[^*]?script|(document*(%2e|.))|(setInterval[^*(%28)]*(%28|\\())|(setTimeout[^*(%28)]*(%28|\\())|(alert[^*(%28)]*(%28|\\())|(((\\%3C) <)[^\n]+((\\%3E) >))";
             }
         }

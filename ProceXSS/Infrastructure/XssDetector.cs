@@ -14,7 +14,7 @@ namespace ProceXSS.Infrastructure
     {
         private readonly IXssConfigurationHandler _configuration;
         private readonly IRegexProcessor _regexProcessor;
-        private Regex _xssDetectRegex;
+        private Regex _xssDetectionRegex;
 
         public XssDetector(IXssConfigurationHandler configuration, IRegexProcessor regexProcessor)
         {
@@ -22,25 +22,25 @@ namespace ProceXSS.Infrastructure
             _regexProcessor = regexProcessor;
         }
 
-        public XSSValidationResult HasXssVulnerability(HttpRequest request)
+        public RequestValidationResult HasXssVulnerability(HttpRequest request)
         {
             if (string.IsNullOrWhiteSpace(_configuration.ControlRegex))
             {
-                _xssDetectRegex = new Regex(_regexProcessor.XssPattern, RegexOptions.IgnoreCase);
+                _xssDetectionRegex = new Regex(_regexProcessor.XssPattern, RegexOptions.IgnoreCase);
             }
             else
             {
                 try
                 {
-                    _xssDetectRegex = new Regex(HttpUtility.HtmlDecode(_configuration.ControlRegex), RegexOptions.IgnoreCase);
+                    _xssDetectionRegex = new Regex(HttpUtility.HtmlDecode(_configuration.ControlRegex), RegexOptions.IgnoreCase);
                 }
                 catch
                 {
-                    _xssDetectRegex = new Regex(_regexProcessor.XssPattern, RegexOptions.IgnoreCase);
+                    _xssDetectionRegex = new Regex(_regexProcessor.XssPattern, RegexOptions.IgnoreCase);
                 }
             }
 
-            XSSValidationResult result = new XSSValidationResult
+            RequestValidationResult result = new RequestValidationResult
             {
                 IsValid = true,
                 DiseasedRequestPart = DiseasedRequestPart.None
@@ -51,7 +51,7 @@ namespace ProceXSS.Infrastructure
                 string queryString = request.QueryString.ToString();
 
                 if (!string.IsNullOrEmpty(queryString) &&
-                    _regexProcessor.ExecFor(_xssDetectRegex, queryString))
+                    _regexProcessor.ExecFor(_xssDetectionRegex, queryString))
                 {
                     result.IsValid = false;
                     result.DiseasedRequestPart = DiseasedRequestPart.QueryString;
@@ -77,7 +77,7 @@ namespace ProceXSS.Infrastructure
                     }
 
 
-                    if (!string.IsNullOrEmpty(formPostValues) && _regexProcessor.ExecFor(_xssDetectRegex, formPostValues))
+                    if (!string.IsNullOrEmpty(formPostValues) && _regexProcessor.ExecFor(_xssDetectionRegex, formPostValues))
                     {
                         result.IsValid = false;
                         result.DiseasedRequestPart = DiseasedRequestPart.Form;

@@ -21,9 +21,9 @@ namespace ProceXSS.Infrastructure
             _regexProcessor = regexProcessor;
         }
 
-        public void Clean(NameValueCollection collection, IXssConfigurationHandler configurationHandler, EncoderType encoderType = EncoderType.AutoDetect)
+        public void Clean(NameValueCollection collection, IXssConfigurationHandler configuration, EncoderType encoderType = EncoderType.AutoDetect)
         {
-            if (string.IsNullOrWhiteSpace(configurationHandler.ControlRegex))
+            if (string.IsNullOrWhiteSpace(configuration.ControlRegex))
             {
                 _xssDetectRegex = new Regex(_regexProcessor.XssPattern, RegexOptions.IgnoreCase);
             }
@@ -31,7 +31,7 @@ namespace ProceXSS.Infrastructure
             {
                 try
                 {
-                    _xssDetectRegex = new Regex(HttpUtility.HtmlDecode(configurationHandler.ControlRegex),RegexOptions.IgnoreCase);
+                    _xssDetectRegex = new Regex(HttpUtility.HtmlDecode(configuration.ControlRegex),RegexOptions.IgnoreCase);
                 }
                 catch
                 {

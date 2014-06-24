@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30324.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProceXSS", "ProceXSS\ProceXSS.csproj", "{685E5A7A-FFEE-4DE2-B70B-557C6239885D}"
 EndProject
@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A279BA
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProceXSS.Test", "ProceXSS.Test\ProceXSS.Test.csproj", "{60C0D6D8-7C93-4355-A4C0-77F9D96CCEC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProceXSS.Sample.Mvc", "ProceXSS.Sample.Mvc\ProceXSS.Sample.Mvc.csproj", "{88FD76AB-0100-485C-B01E-E61961F3A9EE}"
 EndProject
@@ -32,10 +30,6 @@ Global
 		{099A61D8-75CD-4E80-B9B1-C010C2818350}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{099A61D8-75CD-4E80-B9B1-C010C2818350}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{099A61D8-75CD-4E80-B9B1-C010C2818350}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60C0D6D8-7C93-4355-A4C0-77F9D96CCEC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60C0D6D8-7C93-4355-A4C0-77F9D96CCEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60C0D6D8-7C93-4355-A4C0-77F9D96CCEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60C0D6D8-7C93-4355-A4C0-77F9D96CCEC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{88FD76AB-0100-485C-B01E-E61961F3A9EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{88FD76AB-0100-485C-B01E-E61961F3A9EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88FD76AB-0100-485C-B01E-E61961F3A9EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,10 +39,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_StartDate = 2012/5/20
-		BuildVersion_BuildVersioningStyle = None.MonthStamp.Increment.TimeStamp
-		BuildVersion_UpdateAssemblyVersion = True
-		BuildVersion_UpdateFileVersion = True
 		BuildVersion_ConfigurationName = Release
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_BuildVersioningStyle = None.MonthStamp.Increment.TimeStamp
+		BuildVersion_StartDate = 2012/5/20
 	EndGlobalSection
 EndGlobal

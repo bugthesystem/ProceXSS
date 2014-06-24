@@ -5,6 +5,6 @@ namespace ProceXSS.Interface
 {
     public interface IXssDetector
     {
-        XSSValidationResult HasXssVulnerability(HttpRequest request);
+        RequestValidationResult HasXssVulnerability(HttpRequest request);
     }
 }
