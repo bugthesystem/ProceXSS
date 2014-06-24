@@ -2,19 +2,6 @@ using System.Configuration;
 
 namespace ProceXSS.Configuration
 {
-    /* CONFIG SECTION XML
-        <configSections>
-              <section name="antiXssModuleSettings" type="XSSSecurity.XssConfigurationHandler"/>
-        </configSections>   
-     
-        <antiXssModuleSettings redirectUrl="/Error.aspx" log="True" mode="Redirect" isActive="False" controlRegex="control regexi buraya gelecek">
-          <excludeUrls>
-            <add name="url1" value="/"/>
-            <add name="url2" value="/test/default.aspx"/>
-          </excludeUrls>
-        </antiXssModuleSettings>
-     */
-
     public class XssConfigurationHandler : ConfigurationSection, IXssConfigurationHandler
     {
         [ConfigurationProperty("redirectUrl", IsRequired = true)]
