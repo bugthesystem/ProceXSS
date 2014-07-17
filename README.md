@@ -5,8 +5,6 @@ ProceXSS is an Asp.NET Http module to prevent to xss attacks.
 
 * [Nuget Package](http://nuget.org/packages/ProceXSS)
 
-ProceXSS is a Asp.NET Http module for preventing xss attacks. 
-
 ##Basic usage##
 Add following line below the node <configSections> in web.config file
 
