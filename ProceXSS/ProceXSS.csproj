@@ -63,10 +63,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -88,6 +84,8 @@
     <Compile Include="Interface\IRegexProcessor.cs" />
     <Compile Include="Interface\IUrlChecker.cs" />
     <Compile Include="Interface\IXssDetector.cs" />
+    <Compile Include="Log\ILogger.cs" />
+    <Compile Include="Log\NullLogger.cs" />
     <Compile Include="ProceXSSModule.cs" />
     <Compile Include="Infrastructure\Reflector.cs" />
     <Compile Include="Infrastructure\RegexProcessor.cs" />
@@ -99,7 +97,6 @@
     <Compile Include="Enums\DiseasedRequestPart.cs" />
     <Compile Include="Interface\IRequestCleaner.cs" />
     <Compile Include="Interface\IRequestProcessor.cs" />
-    <Compile Include="Log\InternalLogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Struct\RequestValidationResult.cs" />
   </ItemGroup>
@@ -129,10 +126,11 @@
     <None Include="packages.config" />
     <None Include="ProceXSS.nuspec" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2012/5/20" BuildVersion_BuildVersioningStyle="None.MonthStamp.Increment.TimeStamp" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
+      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.MonthStamp.Increment.TimeStamp" BuildVersion_StartDate="2012/5/20" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

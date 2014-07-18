@@ -14,12 +14,14 @@ namespace ProceXSS.Infrastructure
     {
         private readonly IXssConfigurationHandler _configuration;
         private readonly IRegexProcessor _regexProcessor;
+        private readonly ILogger _logger;
         private Regex _xssDetectionRegex;
 
-        public XssDetector(IXssConfigurationHandler configuration, IRegexProcessor regexProcessor)
+        public XssDetector(IXssConfigurationHandler configuration, IRegexProcessor regexProcessor,ILogger logger)
         {
             _configuration = configuration;
             _regexProcessor = regexProcessor;
+            _logger = logger;
         }
 
         public RequestValidationResult HasXssVulnerability(HttpRequest request)
@@ -70,7 +72,7 @@ namespace ProceXSS.Infrastructure
                         if (_configuration.Log.Equals(bool.TrueString))
                         {
                             string message = string.Format(@"Request.Form getter called, Method :{0}, Requested Page: {1}", MethodBase.GetCurrentMethod().Name, request.Url);
-                            InternalLogManager.Instance.ErrorException(message, ex);
+                            _logger.Error(message, ex);
                         }
 
                         throw;

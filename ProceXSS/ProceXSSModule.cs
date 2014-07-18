@@ -3,6 +3,7 @@ using System.Web;
 using ProceXSS.Configuration;
 using ProceXSS.Infrastructure;
 using ProceXSS.Interface;
+using ProceXSS.Log;
 
 namespace ProceXSS
 {
@@ -37,10 +38,11 @@ namespace ProceXSS
             IUrlChecker urlChecker = new UrlChecker(Configuration);
             IRegexProcessor regexProcessor = new RegexProcessor();
             IRequestCleaner requestCleaner = new RequestCleaner(new Reflector(), regexProcessor);
-            IXssDetector xssDetector = new XssDetector(Configuration, regexProcessor);
+            NullLogger nullLogger = new NullLogger();
+            IXssDetector xssDetector = new XssDetector(Configuration, regexProcessor,nullLogger);
             IIpAdressHelper ipAdressHelper = new IpAdressHelper();
 
-            IRequestProcessor requestProcessor = new RequestProcessor(httpApplication, Configuration, urlChecker, requestCleaner, xssDetector, ipAdressHelper);
+            IRequestProcessor requestProcessor = new RequestProcessor(httpApplication, Configuration, urlChecker, requestCleaner, xssDetector, ipAdressHelper,nullLogger);
 
             requestProcessor.ProcessRequest();
         }

@@ -18,8 +18,11 @@ namespace ProceXSS.Infrastructure
         private readonly IRequestCleaner _requestCleaner;
         private readonly IXssDetector _xssDetector;
         private readonly IIpAdressHelper _ipAdressHelper;
+        private readonly ILogger _logger;
 
-        public RequestProcessor(HttpApplication httpApplication, IXssConfigurationHandler configuration, IUrlChecker urlChecker, IRequestCleaner requestCleaner, IXssDetector xssDetector, IIpAdressHelper ipAdressHelper)
+        public RequestProcessor(HttpApplication httpApplication, IXssConfigurationHandler configuration, 
+            IUrlChecker urlChecker, IRequestCleaner requestCleaner, 
+            IXssDetector xssDetector, IIpAdressHelper ipAdressHelper, ILogger logger)
         {
             _httpApplication = httpApplication;
             _configuration = configuration;
@@ -27,6 +30,7 @@ namespace ProceXSS.Infrastructure
             _requestCleaner = requestCleaner;
             _xssDetector = xssDetector;
             _ipAdressHelper = ipAdressHelper;
+            _logger = logger;
         }
 
 
@@ -93,7 +97,7 @@ namespace ProceXSS.Infrastructure
 
         private void LogXssWarning(HttpRequest request, RequestValidationResult validationResult)
         {
-            InternalLogManager.Instance.Warn(BuildLogMessage(request, validationResult), request);
+            _logger.Warn(BuildLogMessage(request, validationResult), request);
         }
 
         private string BuildLogMessage(HttpRequest request, RequestValidationResult validationResult)
