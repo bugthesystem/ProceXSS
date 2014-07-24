@@ -40,6 +40,7 @@ namespace AcmeWeb.WebForms
     {
         public static void Start()
         {
+            ProceXSSModule.SetLogger(new MyLogger()); //Register your ILogger implementation.
             Microsoft.Web.Infrastructure
                          .DynamicModuleHelper
                          .DynamicModuleUtility.RegisterModule(typeof(ProceXSSModule));
@@ -52,6 +53,5 @@ Or add the following configurations below <system.web> <httpModules>
 <add name="ProceXSSModule" type="ProceXSS.ProceXSSModule, ProceXSS, Version=your assembly version, Culture=neutral" />
 ```
 
-**IMPORTANT**: Log feature uses a NLog. If log feature is active, to do this have to set NLog configuration. NLog documentation available on http://nlog-project.org/wiki/
 
 For more detailed information about XSS visit [owasp web site](https://www.owasp.org/index.php/XSS)
