@@ -9,6 +9,7 @@ namespace ProceXSS
 {
     public class ProceXSSModule : IHttpModule
     {
+        private static ILogger _logger;
         private static readonly IXssConfigurationHandler Configuration = XssConfigurationHandler.GetConfig();
 
         public void Dispose()
@@ -38,13 +39,18 @@ namespace ProceXSS
             IUrlChecker urlChecker = new UrlChecker(Configuration);
             IRegexProcessor regexProcessor = new RegexProcessor();
             IRequestCleaner requestCleaner = new RequestCleaner(new Reflector(), regexProcessor);
-            NullLogger nullLogger = new NullLogger();
-            IXssDetector xssDetector = new XssDetector(Configuration, regexProcessor,nullLogger);
+            ILogger nullLogger = _logger ?? (_logger = new NullLogger());
+            IXssDetector xssDetector = new XssDetector(Configuration, regexProcessor, nullLogger);
             IIpAdressHelper ipAdressHelper = new IpAdressHelper();
 
-            IRequestProcessor requestProcessor = new RequestProcessor(httpApplication, Configuration, urlChecker, requestCleaner, xssDetector, ipAdressHelper,nullLogger);
+            IRequestProcessor requestProcessor = new RequestProcessor(httpApplication, Configuration, urlChecker, requestCleaner, xssDetector, ipAdressHelper, nullLogger);
 
             requestProcessor.ProcessRequest();
+        }
+
+        public static void SetLogger(ILogger logger)
+        {
+            _logger = logger;
         }
     }
 }

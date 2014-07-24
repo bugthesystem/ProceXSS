@@ -20,8 +20,8 @@ namespace ProceXSS.Infrastructure
         private readonly IIpAdressHelper _ipAdressHelper;
         private readonly ILogger _logger;
 
-        public RequestProcessor(HttpApplication httpApplication, IXssConfigurationHandler configuration, 
-            IUrlChecker urlChecker, IRequestCleaner requestCleaner, 
+        public RequestProcessor(HttpApplication httpApplication, IXssConfigurationHandler configuration,
+            IUrlChecker urlChecker, IRequestCleaner requestCleaner,
             IXssDetector xssDetector, IIpAdressHelper ipAdressHelper, ILogger logger)
         {
             _httpApplication = httpApplication;
@@ -97,14 +97,15 @@ namespace ProceXSS.Infrastructure
 
         private void LogXssWarning(HttpRequest request, RequestValidationResult validationResult)
         {
-            _logger.Warn(BuildLogMessage(request, validationResult), request);
+            string ipInformation = _ipAdressHelper.GetIpInformation(request);
+            _logger.Warn(BuildLogMessage(ipInformation, validationResult));
         }
 
-        private string BuildLogMessage(HttpRequest request, RequestValidationResult validationResult)
+        private string BuildLogMessage(string ip, RequestValidationResult validationResult)
         {
             StringBuilder message = new StringBuilder();
             message.AppendFormat("Detected xss vulnerability. Time: {0}, IP:{1}, Request Part: {2}",
-                DateTime.Now.ToString(CultureInfo.InvariantCulture), _ipAdressHelper.GetIpInformation(request),
+                DateTime.Now.ToString(CultureInfo.InvariantCulture), ip,
                 validationResult.DiseasedRequestPart);
 
             return message.ToString();

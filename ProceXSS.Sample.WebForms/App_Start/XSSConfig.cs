@@ -8,6 +8,7 @@ namespace ProceXSS.Sample.WebForms
     {
         public static void Start()
         {
+            ProceXSSModule.SetLogger(new NLogger());
             Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(ProceXSSModule));
         }
     }
