@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using ProceXSS.Sample.WebForms;
+using ProceXSS.Sample.WebForms.Context;
 
 [assembly: PreApplicationStartMethod(typeof(XSSConfig), "Start")]
 namespace ProceXSS.Sample.WebForms
