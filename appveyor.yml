@@ -1,0 +1,11 @@
+configuration: Release
+branches:
+  only:
+    - master
+
+before_build:
+  - nuget restore ProceXSS.sln
+
+build:
+  project: ProceXSS.sln       
+  verbosity: minimal
