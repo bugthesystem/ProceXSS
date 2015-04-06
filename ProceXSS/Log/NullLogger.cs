@@ -8,7 +8,7 @@ namespace ProceXSS.Log
         {
         }
 
-        public void DebugException(string message, Exception exception)
+        public void Debug(string message, Exception exception)
         {
         }
 
