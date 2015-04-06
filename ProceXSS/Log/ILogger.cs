@@ -5,7 +5,7 @@ namespace ProceXSS.Log
     public interface ILogger
     {
         void Debug(string message);
-        void DebugException(string message, Exception exception);
+        void Debug(string message, Exception exception);
 
         void Error(string message);
         void Error(string message, Exception exception);
