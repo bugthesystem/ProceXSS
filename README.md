@@ -14,7 +14,7 @@ Add following line below the node <configSections> in web.config file
 <section name="antiXssModuleSettings" type="ProceXSS.Configuration.XssConfigurationHandler, ProceXSS"/>
 ```
 
-and Add the following configurations below the node <configuration>,
+and add following configurations below the node <configuration>,
 
 ```xml
 <antiXssModuleSettings redirectUrl="/home" log="False" mode="Ignore" isActive="True"
@@ -31,7 +31,7 @@ eval[^a-zA-Z_0-9]*(\%28|\()|(((\%3C) &lt;)[^\n]+((\%3E) &gt;))">
 </antiXssModuleSettings>
 ```
 
-There is a two option for **mode** property. These are **Ignore** and **Redirect**. When the redirect mode is active system will redirect the request to value of **RedirectUri**.
+There are two options for **mode** property. These are **Ignore** and **Redirect**. When the redirect mode is active then the system will redirect the request to the value of **RedirectUri**.
 
 Nuget package creates **XSSConfig.cs** to **App_Start** folder to register module dynamically.
 ```csharp
