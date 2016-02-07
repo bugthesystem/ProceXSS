@@ -20,7 +20,7 @@ namespace ProceXSS.Sample.WebForms.Context
             _logger.Debug(message);
         }
 
-        public void DebugException(string message, Exception exception)
+        public void Debug(string message, Exception exception)
         {
             _logger.Debug(message, exception);
         }

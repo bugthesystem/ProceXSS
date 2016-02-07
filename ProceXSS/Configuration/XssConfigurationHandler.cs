@@ -5,22 +5,10 @@ namespace ProceXSS.Configuration
     public class XssConfigurationHandler : ConfigurationSection, IXssConfigurationHandler
     {
         [ConfigurationProperty("redirectUrl", IsRequired = true)]
-        public string RedirectUrl
-        {
-            get
-            {
-                return this["redirectUrl"] as string;
-            }
-        }
+        public string RedirectUrl => this["redirectUrl"] as string;
 
         [ConfigurationProperty("isActive", IsRequired = true)]
-        public string IsActive
-        {
-            get
-            {
-                return this["isActive"] as string;
-            }
-        }
+        public string IsActive => this["isActive"] as string;
 
         [ConfigurationProperty("controlRegex")]
         public string ControlRegex
@@ -39,13 +27,7 @@ namespace ProceXSS.Configuration
         }
 
         [ConfigurationProperty("mode", IsRequired = true)]
-        public string Mode
-        {
-            get
-            {
-                return this["mode"] as string;
-            }
-        }
+        public string Mode => this["mode"] as string;
 
         [ConfigurationProperty("log")]
         public string Log
@@ -65,13 +47,7 @@ namespace ProceXSS.Configuration
         }
 
         [ConfigurationProperty("excludeUrls")]
-        public UrlExcludeFilterCollection ExcludeList
-        {
-            get
-            {
-                return this["excludeUrls"] as UrlExcludeFilterCollection;
-            }
-        }
+        public UrlExcludeFilterCollection ExcludeList => this["excludeUrls"] as UrlExcludeFilterCollection;
 
         public static XssConfigurationHandler GetConfig()
         {

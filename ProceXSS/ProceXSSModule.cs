@@ -34,18 +34,17 @@ namespace ProceXSS
             StartXssDetection(sender as HttpApplication);
         }
 
-        private void StartXssDetection(HttpApplication httpApplication)
+        private void StartXssDetection(HttpApplication application)
         {
             IUrlChecker urlChecker = new UrlChecker(Configuration);
-            IRegexProcessor regexProcessor = new RegexProcessor();
-            IRequestCleaner requestCleaner = new RequestCleaner(new Reflector(), regexProcessor);
+            IRegexHelper regexHelper = new RegexHelper();
+            IRequestSanitizer requestSanitizer = new RequestSanitizer(new ReflectortionHelper(), regexHelper);
             ILogger nullLogger = _logger ?? (_logger = new NullLogger());
-            IXssDetector xssDetector = new XssDetector(Configuration, regexProcessor, nullLogger);
+            IXssGuard xssGuard = new XssGuard(Configuration, regexHelper, nullLogger);
             IIpAdressHelper ipAdressHelper = new IpAdressHelper();
 
-            IRequestProcessor requestProcessor = new RequestProcessor(httpApplication, Configuration, urlChecker, requestCleaner, xssDetector, ipAdressHelper, nullLogger);
-
-            requestProcessor.ProcessRequest();
+            IModuleWorker moduleWorker = new ModuleWorker(Configuration, urlChecker, requestSanitizer, xssGuard, ipAdressHelper, nullLogger);
+            moduleWorker.Attach(application);
         }
 
         public static void SetLogger(ILogger logger)

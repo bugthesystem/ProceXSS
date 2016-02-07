@@ -2,10 +2,10 @@
 using ProceXSS.Sample.Mvc;
 using ProceXSS.Sample.Mvc.Context;
 
-[assembly: PreApplicationStartMethod(typeof(XSSConfig), "Start")]
+[assembly: PreApplicationStartMethod(typeof(XssConfig), "Start")]
 namespace ProceXSS.Sample.Mvc
 {
-    public class XSSConfig
+    public class XssConfig
     {
         public static void Start()
         {

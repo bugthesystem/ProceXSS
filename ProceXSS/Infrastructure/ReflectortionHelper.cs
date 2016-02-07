@@ -3,7 +3,7 @@ using ProceXSS.Interface;
 
 namespace ProceXSS.Infrastructure
 {
-    public class Reflector : IReflector
+    public class ReflectortionHelper : IReflectortionHelper
     {
         public PropertyInfo MakeWritable<T>(T type) where T : class
         {

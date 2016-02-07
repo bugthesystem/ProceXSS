@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProceXSS</RootNamespace>
     <AssemblyName>ProceXSS</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -40,6 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -75,30 +76,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\IpAdressHelper.cs" />
-    <Compile Include="Infrastructure\RequestCleaner.cs" />
-    <Compile Include="Infrastructure\RequestProcessor.cs" />
+    <Compile Include="Infrastructure\RequestSanitizer.cs" />
+    <Compile Include="Infrastructure\ModuleWorker.cs" />
     <Compile Include="Infrastructure\UrlChecker.cs" />
-    <Compile Include="Infrastructure\XssDetector.cs" />
+    <Compile Include="Infrastructure\XssGuard.cs" />
     <Compile Include="Interface\IIpAdressHelper.cs" />
-    <Compile Include="Interface\IReflector.cs" />
-    <Compile Include="Interface\IRegexProcessor.cs" />
+    <Compile Include="Interface\IReflectortionHelper.cs" />
+    <Compile Include="Interface\IRegexHelper.cs" />
     <Compile Include="Interface\IUrlChecker.cs" />
-    <Compile Include="Interface\IXssDetector.cs" />
+    <Compile Include="Interface\IXssGuard.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Log\NullLogger.cs" />
     <Compile Include="ProceXSSModule.cs" />
-    <Compile Include="Infrastructure\Reflector.cs" />
-    <Compile Include="Infrastructure\RegexProcessor.cs" />
+    <Compile Include="Infrastructure\ReflectortionHelper.cs" />
+    <Compile Include="Infrastructure\RegexHelper.cs" />
     <Compile Include="Configuration\IXssConfigurationHandler.cs" />
     <Compile Include="Configuration\UrlExcludeFilter.cs" />
     <Compile Include="Configuration\UrlExcludeFilterCollection.cs" />
     <Compile Include="Configuration\XssConfigurationHandler.cs" />
     <Compile Include="Enums\EncoderType.cs" />
     <Compile Include="Enums\DiseasedRequestPart.cs" />
-    <Compile Include="Interface\IRequestCleaner.cs" />
-    <Compile Include="Interface\IRequestProcessor.cs" />
+    <Compile Include="Interface\IRequestSanitizer.cs" />
+    <Compile Include="Interface\IModuleWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Struct\RequestValidationResult.cs" />
+    <Compile Include="Struct\ValidateRequestResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -130,7 +131,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.MonthStamp.Increment.TimeStamp" BuildVersion_StartDate="2012/5/20" />
+      <UserProperties BuildVersion_StartDate="2012/5/20" BuildVersion_BuildVersioningStyle="None.MonthStamp.Increment.TimeStamp" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

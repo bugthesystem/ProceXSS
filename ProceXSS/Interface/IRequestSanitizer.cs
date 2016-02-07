@@ -4,7 +4,7 @@ using ProceXSS.Enums;
 
 namespace ProceXSS.Interface
 {
-    public interface IRequestCleaner
+    public interface IRequestSanitizer
     {
         void Clean(NameValueCollection collection, IXssConfigurationHandler configuration, EncoderType encoderType = EncoderType.AutoDetect);
     }

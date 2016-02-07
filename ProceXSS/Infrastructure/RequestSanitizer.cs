@@ -9,23 +9,23 @@ using ProceXSS.Interface;
 
 namespace ProceXSS.Infrastructure
 {
-    public sealed class RequestCleaner : IRequestCleaner
+    public sealed class RequestSanitizer : IRequestSanitizer
     {
-        private readonly IReflector _reflector;
-        private readonly IRegexProcessor _regexProcessor;
+        private readonly IReflectortionHelper _reflectortionHelper;
+        private readonly IRegexHelper _regexHelper;
         private Regex _xssDetectRegex;
 
-        public RequestCleaner(IReflector reflector,IRegexProcessor  regexProcessor)
+        public RequestSanitizer(IReflectortionHelper reflectortionHelper,IRegexHelper  regexHelper)
         {
-            _reflector = reflector;
-            _regexProcessor = regexProcessor;
+            _reflectortionHelper = reflectortionHelper;
+            _regexHelper = regexHelper;
         }
 
         public void Clean(NameValueCollection collection, IXssConfigurationHandler configuration, EncoderType encoderType = EncoderType.AutoDetect)
         {
             if (string.IsNullOrWhiteSpace(configuration.ControlRegex))
             {
-                _xssDetectRegex = new Regex(_regexProcessor.XssPattern, RegexOptions.IgnoreCase);
+                _xssDetectRegex = new Regex(_regexHelper.XssPattern, RegexOptions.IgnoreCase);
             }
             else
             {
@@ -35,11 +35,11 @@ namespace ProceXSS.Infrastructure
                 }
                 catch
                 {
-                    _xssDetectRegex = new Regex(_regexProcessor.XssPattern,RegexOptions.IgnoreCase);
+                    _xssDetectRegex = new Regex(_regexHelper.XssPattern,RegexOptions.IgnoreCase);
                 }
             }
 
-            PropertyInfo readonlyProperty = _reflector.MakeWritable(collection);
+            PropertyInfo readonlyProperty = _reflectortionHelper.MakeWritable(collection);
 
             for (int i = 0; i < collection.Count; i++)
             {
@@ -65,7 +65,7 @@ namespace ProceXSS.Infrastructure
                     }
                 case EncoderType.HtmlFragment:
                     {
-                        collection[collection.Keys[index]] = _regexProcessor.IsNumber(collection[index])
+                        collection[collection.Keys[index]] = _regexHelper.IsNumber(collection[index])
                                                              ? collection[index]
                                                              : Sanitizer.GetSafeHtmlFragment(collection[index]);
                         break;
@@ -82,7 +82,7 @@ namespace ProceXSS.Infrastructure
                     break;
                 case EncoderType.AutoDetect:
                     {
-                        if (_regexProcessor.ExecFor(_xssDetectRegex, collection[index]))
+                        if (_regexHelper.ExecFor(_xssDetectRegex, collection[index]))
                         {
                             collection[collection.Keys[index]] = Encoder.JavaScriptEncode(collection[index]);
                         }
