@@ -81,14 +81,14 @@
     <Compile Include="Infrastructure\UrlChecker.cs" />
     <Compile Include="Infrastructure\XssGuard.cs" />
     <Compile Include="Interface\IIpAdressHelper.cs" />
-    <Compile Include="Interface\IReflectortionHelper.cs" />
+    <Compile Include="Interface\IReflectionHelper.cs" />
     <Compile Include="Interface\IRegexHelper.cs" />
     <Compile Include="Interface\IUrlChecker.cs" />
     <Compile Include="Interface\IXssGuard.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Log\NullLogger.cs" />
     <Compile Include="ProceXSSModule.cs" />
-    <Compile Include="Infrastructure\ReflectortionHelper.cs" />
+    <Compile Include="Infrastructure\ReflectionHelper.cs" />
     <Compile Include="Infrastructure\RegexHelper.cs" />
     <Compile Include="Configuration\IXssConfigurationHandler.cs" />
     <Compile Include="Configuration\UrlExcludeFilter.cs" />

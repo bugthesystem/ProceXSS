@@ -38,7 +38,7 @@ namespace ProceXSS
         {
             IUrlChecker urlChecker = new UrlChecker(Configuration);
             IRegexHelper regexHelper = new RegexHelper();
-            IRequestSanitizer requestSanitizer = new RequestSanitizer(new ReflectortionHelper(), regexHelper);
+            IRequestSanitizer requestSanitizer = new RequestSanitizer(new ReflectionHelper(), regexHelper);
             ILogger nullLogger = _logger ?? (_logger = new NullLogger());
             IXssGuard xssGuard = new XssGuard(Configuration, regexHelper, nullLogger);
             IIpAdressHelper ipAdressHelper = new IpAdressHelper();

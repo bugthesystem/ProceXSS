@@ -11,13 +11,13 @@ namespace ProceXSS.Infrastructure
 {
     public sealed class RequestSanitizer : IRequestSanitizer
     {
-        private readonly IReflectortionHelper _reflectortionHelper;
+        private readonly IReflectionHelper _reflectionHelper;
         private readonly IRegexHelper _regexHelper;
         private Regex _xssDetectRegex;
 
-        public RequestSanitizer(IReflectortionHelper reflectortionHelper,IRegexHelper  regexHelper)
+        public RequestSanitizer(IReflectionHelper reflectionHelper,IRegexHelper  regexHelper)
         {
-            _reflectortionHelper = reflectortionHelper;
+            _reflectionHelper = reflectionHelper;
             _regexHelper = regexHelper;
         }
 
@@ -39,7 +39,7 @@ namespace ProceXSS.Infrastructure
                 }
             }
 
-            PropertyInfo readonlyProperty = _reflectortionHelper.MakeWritable(collection);
+            PropertyInfo readonlyProperty = _reflectionHelper.MakeWritable(collection);
 
             for (int i = 0; i < collection.Count; i++)
             {
