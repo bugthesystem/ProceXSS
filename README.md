@@ -3,6 +3,8 @@ ProceXss
 
 ProceXSS is an Asp.NET Http module to prevent to xss attacks.
 
+:warning: The recommended way is to sanitize using Encoder, this module will not guarantee but trues to minimize.
+
 [![Build status](https://ci.appveyor.com/api/projects/status/0ijjpf6l16h59bhh?svg=true)](https://ci.appveyor.com/project/ziyasal/procexss)
 
 [Nuget Package](http://nuget.org/packages/ProceXSS) ```Install-Package ProceXSS```
